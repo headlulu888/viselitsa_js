@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Виселитца</title>
+</head>
+<body>
+  <h1>Виселица!</h1>
+
+  <script>
+    // создаем массив со словами
+    var words = [
+      "программа",
+      "макака",
+      "прекрасный",
+      "оладушек"
+    ];
+
+    // выбираем случайное число
+    var word = words[Math.floor(Math.random() * words.length)];
+
+    // создаем итоговый массив
+    var answerArray = [];
+    for (var i = 0; i < word.length; i++) {
+      answerArray[i] = "_";
+    }
+
+    var remaningLetters = word.length;
+
+    // игровой цикл
+    while (remaningLetters > 0) {
+      //показывать состояние игры
+      alert(answerArray.join(" "));
+      //запрашивать варианты ответа
+      var guess = prompt("Угадайте букву, или нажмите на Отмена для выхода из игры.");
+      if (guess === null) {
+        // выходим из цикла
+        break;
+      } else if (guess.length !== 1) {
+        alert("пожалуйста, введите одиночную букву.");
+      } else {
+        // обновляем состояние игры
+        for (var j = 0; j < word.length; j++) {
+          if (word[j] === guess) {
+            answerArray[j] = guess;
+            remaningLetters--;
+          }
+        }
+      }
+      // конец игрового цикла
+    }
+
+    // отображаем ответ и поздравляем игрока
+    alert(answerArray.join(" "));
+    alert("Отлично! Было загадано слово " + word);
+  </script>
+</body>
+</html>
